@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*
  * Functie generica pentru calcularea valorii maxime dintr-un array.
@@ -18,42 +18,35 @@
  */
 
 void *find_max(void *arr, int n, int element_size,
-				int (*compare)(const void *, const void *))
-{
-	void *max_elem = arr;
+               int (*compare)(const void *, const void *)) {
+  void *max_elem = arr;
+  int i;
+  for (i = 0; i < n; i++) {
+    void *cur_element = (char *)arr + i * element_size;
+    if ((*compare)(cur_element, max_elem)) {
+      max_elem = cur_element;
+    }
+  }
 
-	(void) n;
-	(void) element_size;
-	(void) compare;
-
-	return max_elem;
+  return max_elem;
 }
 
-/*
- * a si b sunt doi pointeri la void, dar se specifica in enunt
- * ca datele de la acele adrese sunt de tip int, asadar trebuie
- * castati.
- * Functia returneaza 1 daca valorea de la adresa lui a este mai
- * mare decat cea de la adresa lui b, in caz contrar returneaza 0.
- */
+int compare(const void *a, const void *b) {
+  if ((*(int *)a - *(int *)b) > 0) return 1;
+  return 0;
+}
 
-int compare(const void *a, const void *b);
+int main(void) {
+  int n;
 
-/*
- * Se citeste de la tastatura un vector si se cere sa se afle
- * elementul maxim folosind functia find_max.
- */
-int main(void)
-{
-	int n;
+  scanf("%d", &n);
 
-	scanf("%d", &n);
+  int *arr = malloc(n * sizeof(*arr));
 
-	int *arr = malloc(n * sizeof(*arr));
+  for (int i = 0; i < n; ++i) scanf("%d", &arr[i]);
 
-	for (int i = 0 ; i < n; ++i)
-		scanf("%d", &arr[i]);
+  printf("Max: %d\n", *(int *)find_max(arr, n, sizeof(*arr), compare));
 
-	free(arr);
-	return 0;
+  free(arr);
+  return 0;
 }
