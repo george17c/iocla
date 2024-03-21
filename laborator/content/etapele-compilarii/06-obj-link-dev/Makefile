@@ -8,8 +8,11 @@ all: main
 
 # TODO: Add dependecies here so that the Makefile works
 main: main.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) -c main.c
+	$(CC) main.o shop.o -o main
 
+run:
+	./main
 
 clean:
 	-rm -f main main.o
