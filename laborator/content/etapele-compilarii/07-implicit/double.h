@@ -1,0 +1,1 @@
+unsigned long long compute_double(unsigned long long val);
