@@ -12,6 +12,17 @@ int main(void)
 	max = v[0];
 	i = 1;
 
-	(void) i;
-	(void) max;
+begin:
+	if(v[i] > max) goto updateMax;
+	if(i == sizeof(v)/sizeof(int)) goto end;
+	i++;
+	goto begin;
+
+updateMax:
+	max = v[i];
+	goto begin;
+
+end:
+	printf("max: %d\n", max);
+	return 0;
 }
