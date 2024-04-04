@@ -1,25 +1,25 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-char *delete_first(char *s, char *pattern);
+char *delete_first(char *s, char *pattern) {
+  char *p = strstr(s, pattern);
+  strtok(s, pattern);
+  strcat(s, p + strlen(pattern));
+  return s;
+}
 
-int main(void)
-{
-	/*
-	 * TODO: Este corectă declarația variabilei s în contextul în care o să apelăm
-	 * funcția delete_first asupra sa? De ce? Modificați dacă este cazul.
-	 */
-	char *s = "Ana are mere";
-	char *pattern = "re";
+int main(void) {
+  char *s, *pattern;
 
-	(void) s;
-	(void) pattern;
+  s = (char *)malloc(13 * sizeof(char));
+  strcpy(s, "Ana are mere");
+  pattern = (char *)malloc(3 * sizeof(char));
+  strcpy(pattern, "re");
 
-	// Decomentați linia după ce ați implementat funcția delete_first.
-	// printf("%s\n", delete_first(s, pattern));
+  printf("%s\n", delete_first(s, pattern));
 
-	return 0;
+  return 0;
 }
