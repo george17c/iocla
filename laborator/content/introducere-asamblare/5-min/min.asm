@@ -9,6 +9,14 @@ main:
     mov eax, 4
     mov ebx, 1
     ; TODO: aflati minimul
-    PRINTF32 `%d\n\x0`, eax ; afiseaza minimul
+    cmp eax, ebx
+    jl greata
+    jmp greatb
 
+greata:
+    PRINTF32 `%d\n\x0`, eax
+    ret
+
+greatb:
+    PRINTF32 `%d\n\x0`, ebx
     ret
