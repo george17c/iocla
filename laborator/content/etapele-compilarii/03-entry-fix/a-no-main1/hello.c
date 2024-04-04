@@ -1,19 +1,12 @@
 #include <stdio.h>
 
-static void hi(void)
-{
-	puts("Hi!");
-}
+static void hi(void) { puts("Hi!"); }
 
-static void bye(void)
-{
-	puts("Bye!");
-}
+static void bye(void) { puts("Bye!"); }
 
-int my_main(void)
-{
-	hi();
-	bye();
+int main(void) {
+  hi();
+  bye();
 
-	return 0;
+  return 0;
 }
