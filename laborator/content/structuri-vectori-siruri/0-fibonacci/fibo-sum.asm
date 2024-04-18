@@ -17,6 +17,17 @@ main:
 
     ; use loop instruction
 
+    xor ebx, ebx    ; f(0)
+    mov edx, 1      ; f(1)
+    mov ecx, [N]    ; contorul
+
+for:
+    mov eax, ebx
+    add eax, edx    ; fac suma
+    mov ebx, edx    ; f(n)
+    mov edx, eax    ; f(n + 1)
+    loop for
+
     push eax
     push dword [N]
     push sum_print_format
