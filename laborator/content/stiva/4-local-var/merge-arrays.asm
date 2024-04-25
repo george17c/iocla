@@ -20,6 +20,26 @@ main:
     mov ebx, 0 ; counter used for array_2
     mov ecx, 0 ; counter used for the output array
 
+push_a1:
+    sub esp, 4
+    mov edx, [array_1 + eax]
+    mov [esp], edx
+    inc eax
+    cmp eax, ARRAY_1_LEN
+    jl push_a1
+
+push_a2:
+    sub esp, 4
+    mov edx, [array_2 + ebx]
+    mov [esp], edx
+    inc ebx
+    cmp ebx, ARRAY_2_LEN
+    jl push_a2
+
+
+    xor eax, eax
+    xor ebx, ebx
+    xor ecx, ecx
 merge_arrays:
     mov edx, [array_1 + 4 * eax]
     cmp edx, [array_2 + 4 * ebx]

@@ -16,6 +16,30 @@ main:
     ; TODO push the elements of the array on the stack
     ; TODO retrieve the elements (pop) from the stack into the output array
 
+    xor ecx, ecx
+push_elem:
+    cmp ecx, ARRAY_LEN
+    je reset
+    mov eax, [input + 4 * ecx]
+    push eax
+    inc ecx
+    jmp push_elem
+
+reset:
+    xor ecx, ecx
+
+pop_elem:
+    cmp ecx, ARRAY_LEN
+    je continue
+    pop eax
+    mov ebx, ecx
+    shl ebx, 2
+    add ebx, output
+    mov [ebx], eax
+    inc ecx
+    jmp pop_elem
+
+continue:
     PRINTF32 `Reversed array: \n\x0`
     xor ecx, ecx
 print_array:
