@@ -2,31 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 
-int my_strlen(const char *str)
-{
-	/* TODO */
-
-	/**
-	 * The cast to (void) is used to avoid a compiler warning. Remove the line
-	 * below to find out what the warning is.
-	 *
-	 * Remove this cast when implementing the function.
-	 */
-	(void) str;
-
-	return -1;
+int my_strlen(const char *str) {
+  int len = 0;
+  while (*str) {
+    len++;
+    str++;
+  }
+  return len - 1;
 }
 
-void equality_check(const char *str)
-{
-	/* TODO */
-	(void) str;
+void equality_check(const char *str, int l) {
+  int i, I;
+  for (i = 0; i < l; i++) {
+    I = i + (1 << i);
+    if (I > l) {
+      if (*(str + i) % *(str + I))
+        printf("Address of %c: %p\n", *(str + i), (str + i));
+    } else if (*(str + i) ^ *(str + I))
+      printf("Address of %c: %p\n", *(str + i), (str + i));
+  }
 }
 
-int main(void)
-{
-	/* TODO: Test functions */
+int main(void) {
+  char s[100];
+  int l;
 
-	return 0;
+  fgets(s, 100, stdin);
+  l = my_strlen(s);
+
+  printf("length = %d\n", l);
+  equality_check(s, l);
+
+  return 0;
 }
-

@@ -2,16 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-void mirror(char *s)
-{
-	/* TODO */
-	(void) s;
+void mirror(char *s) {
+  int l = strlen(s), i, j;
+  i = 0;
+  j = l - 1;
+
+  char aux;
+  while (i < j) {
+    aux = *(s + i);
+    *(s + i) = *(s + j);
+    *(s + j) = aux;
+    i++;
+    j--;
+  }
 }
 
-int main(void)
-{
-	/* TODO: Test function */
+int main(void) {
+  char sir[] = "Ana n-are mere";
 
-	return 0;
+  mirror(sir);
+  puts(sir);
+
+  return 0;
 }
-
