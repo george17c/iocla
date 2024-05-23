@@ -2,7 +2,7 @@
 # USO remembers
 
 CC=gcc
-CFLAGS=-m32 -masm=intel -fno-stack-protector
+CFLAGS=-m32 -masm=intel -fstack-protector
 
 all: do_overflow do_overflow.asm
 
